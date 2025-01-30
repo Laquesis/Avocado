@@ -13,6 +13,8 @@ Agrupa los datos por Date y calcula el promedio de AveragePrice utilizando group
 Visualiza los componentes descompuestos usando matplotlib para cada uno de ellos.
 series temporales
 
+![series temporales](descomposicionseriestemporales.png)
+
 FUENTES: MIRAR APUNTES ANALISIS EXPLORATORIO DE DATOS- TEORIA 4 Mirar punto 9. (pagina 45 )
 
 Análisis de Estacionalidad por Región:
@@ -24,7 +26,7 @@ Representa gráficamente las tendencias utilizando plt.plot() de matplotlib.
 pero centrado en 'AveragePrice'.
 
 Ejemplo de un grafico creado
-
+![analisis estacionalidad region US](totalUS1.png)
 analisis estacionalidad region US
 
 El total de regiones són ['Albany' 'Atlanta' 'BaltimoreWashington' 'Boise' 'Boston' 'BuffaloRochester' 'California' 'Charlotte' 'Chicago' 'CincinnatiDayton' 'Columbus' 'DallasFtWorth' 'Denver' 'Detroit' 'GrandRapids' 'GreatLakes' 'HarrisburgScranton' 'HartfordSpringfield' 'Houston' 'Indianapolis' 'Jacksonville' 'LasVegas' 'LosAngeles' 'Louisville' 'MiamiFtLauderdale' 'Midsouth' 'Nashville' 'NewOrleansMobile' 'NewYork' 'Northeast' 'NorthernNewEngland' 'Orlando' 'Philadelphia' 'PhoenixTucson' 'Pittsburgh' 'Plains' 'Portland' 'RaleighGreensboro' 'RichmondNorfolk' 'Roanoke' 'Sacramento' 'SanDiego' 'SanFrancisco' 'Seattle' 'SouthCarolina' 'SouthCentral' 'Southeast' 'Spokane' 'StLouis' 'Syracuse' 'Tampa' 'TotalUS' 'West' 'WestTexNewMexico']
@@ -109,7 +111,7 @@ region_to_broad = { # California 'LosAngeles': 'California', 'SanDiego': 'Califo
 }
 
 Y hacemos graficos por regiones
-
+![California Region](CaliforniaRegion1.png)
 California Region
 
 GRAFICO DE DISPERSIÓN FINAL
@@ -118,7 +120,7 @@ Pero nos hace falta un gráfico de dispersión y creamos un dataframe agrupado. 
 grouped_data = advocado_data.groupby(['broad_region', pd.Grouper(key='Date', freq='D')]).agg(AveragePrice=('AveragePrice', 'mean') ).reset_index()
 
 Obtenemos
-
+![California Region Grafico dispersión](GraficoDispersionCalifornia1.png)
 California Region Grafico dispersión
 
 De esta manera podemos entrenar modelos como regresiones (lineales o polinómicas) para prever precios.
@@ -126,7 +128,7 @@ De esta manera podemos entrenar modelos como regresiones (lineales o polinómica
 MODELOS REGRESIÓN LINEAL Y POLINÓMICA
 MODELO REGRESIÓN LINEAL
 Obtenemos
-
+![California Regresión Lineal](modeloRegresionLinealCalifornia.png)
 California Regresión Lineal
 
 Para ello usamos
@@ -143,7 +145,7 @@ advocado_data['Date_Num'] = advocado_data['Date'].map(pd.Timestamp.toordinal)
 
 REGRESIÓN POLINÓMICA DE DISTINTO GRADO POR ZONAS
 Ejemplo de regresión polinómica aplicado a California de nuevo
-
+![California Regresión Polinomica](regresionpolinomicaCalifornia.png)
 California Regresión Polinomica
 
 Uso de StandardScaler
@@ -188,7 +190,7 @@ Vemos que es mejor usar el modelo polinómico al lineal.
 
 EXTRAPOLACION
 Para la extrapolación se aplica el mismo modelo pero se extiende las fechas para fer como funciona el modelo.
-
+![California Regresión Polinomica extendida](extrapolacionconmodeloPolinomico.png)
 California Regresión Polinomica extendida
 
 Esto muestra que la regresión polinómica no es válida para extrapolar porque fuera del rango de los datos:
